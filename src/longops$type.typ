@@ -13,8 +13,8 @@ CREATE OR REPLACE TYPE longops$type AS OBJECT
      *      -- We should tick progress
      *      FOR i IN 1 .. 100
      *       LOOP
-     *          longops.tick;        -- шаг в единицу
-     *          --longops.tick(123); --если хотим произвольный шаг
+     *          longops.tick;        -- Step with default value 1
+     *          --longops.tick(123); -- for certain step size
      *      END LOOP;
      *
      *  END;
