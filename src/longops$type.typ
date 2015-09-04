@@ -1,16 +1,16 @@
-CREATE OR REPLACE TYPE ASUSETYPES.longops$type AS OBJECT
+CREATE OR REPLACE TYPE longops$type AS OBJECT
 (
     /*
-     * 18.02.2015 Масков     Тип для работы с v$session_longops
-     * Пример использования:
+     * It's wrapper for dealing with v$session_longops
+     * Example of usage:
      *
      *   DECLARE
      *       longops longops$type;
      *   BEGIN
-     *       -- Создаём экземпляр с указанием имени задачи и размера шкалы прогресса
+     *       -- Lets create new task with name and scale size
      *       longops := longops$type(p_process_name => 'long process test', p_full_count => 100);
      *
-     *      -- Тикаем шкалу в цикле
+     *      -- We should tick progress
      *      FOR i IN 1 .. 100
      *       LOOP
      *          longops.tick;        -- шаг в единицу
@@ -38,7 +38,7 @@ CREATE OR REPLACE TYPE ASUSETYPES.longops$type AS OBJECT
     MEMBER PROCEDURE tick(p_step NUMBER)
 )
 /
-CREATE OR REPLACE TYPE BODY ASUSETYPES.longops$type IS
+CREATE OR REPLACE TYPE BODY longops$type IS
 
     MEMBER PROCEDURE assert(condition_in       IN BOOLEAN,
                      message_in         IN VARCHAR2,
